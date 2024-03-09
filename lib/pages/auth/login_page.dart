@@ -9,6 +9,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _loginFormKey = GlobalKey();
+  String? username, password;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +62,11 @@ class _LoginPageState extends State<LoginPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextFormField(
+              onSaved: (value) {
+                setState(() {
+                  username = value;
+                });
+              },
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "Enter a username";
@@ -72,6 +78,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             TextFormField(
+              onSaved: (value) {
+                setState(() {
+                  password = value;
+                });
+              },
               obscureText: true,
               validator: (value) {
                 if (value == null || value.length < 8) {
@@ -97,6 +108,7 @@ class _LoginPageState extends State<LoginPage> {
         onPressed: () {
           if (_loginFormKey.currentState?.validate() ?? false) {
             _loginFormKey.currentState?.save();
+            print("$username - $password");
           }
         },
         child: const Text("Login"),
