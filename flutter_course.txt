@@ -1,0 +1,3 @@
+- flutter pub outdated
+- flutter doctor -v
+- flutter pub remove packagename
